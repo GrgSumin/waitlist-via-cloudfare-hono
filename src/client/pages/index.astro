@@ -1,11 +1,32 @@
 ---
-import Hello from "../components/Hello.astro";
+import Card from "../components/Card.astro";
+import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-  <Hello />
+  <main class="flex min-h-screen flex-col items-center justify-center gap-12 px-6 py-16">
+    <Hero />
+
+    <section class="w-full max-w-5xl">
+      <h2 class="text-neutral-content pb-8 text-center">
+        What ten minutes a day gets you
+      </h2>
+
+      <div class="grid gap-6 md:grid-cols-3 md:items-stretch">
+        <Card
+          title="Interview ready"
+          description="Drill the questions that actually come up, until the answer arrives before the nerves do."
+        />
+        <Card
+          title="Read AI code faster"
+          description="Your assistant writes plenty. Learn to spot in seconds which parts to keep and which to throw out."
+        />
+        <Card
+          title="Muscle memory"
+          description="Closures, promises, the event loop. Small reps until the syntax stops slowing you down."
+        />
+      </div>
+    </section>
+  </main>
 </Layout>
