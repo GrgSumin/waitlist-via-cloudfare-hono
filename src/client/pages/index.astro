@@ -1,6 +1,7 @@
 ---
 import Card from "../components/Card.astro";
 import Hero from "../components/Hero.astro";
+import { ServerStatus } from "../components/serverStatus";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -28,5 +29,8 @@ import Layout from "../layouts/Layout.astro";
         />
       </div>
     </section>
+    <div class="">
+      <ServerStatus client:load />
+    </div>
   </main>
 </Layout>

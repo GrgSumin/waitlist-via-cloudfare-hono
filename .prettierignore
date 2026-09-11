@@ -1,0 +1,11 @@
+# build output and generated types
+dist/
+.astro/
+
+# local tool state
+.wrangler/
+.claude/
+
+# dependencies and lockfiles
+node_modules/
+bun.lock

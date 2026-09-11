@@ -27,3 +27,6 @@ bun-debug.log*
 CLAUDE.md
 AGENTS.md
 
+# wrangler local state and build cache
+.wrangler/
+
