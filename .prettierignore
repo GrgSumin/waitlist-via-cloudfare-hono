@@ -6,6 +6,9 @@ dist/
 .wrangler/
 .claude/
 
+# drizzle-generated migrations — leave exactly as generated
+src/server/db/migration/
+
 # dependencies and lockfiles
 node_modules/
 bun.lock

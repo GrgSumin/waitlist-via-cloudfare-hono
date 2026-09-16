@@ -6,25 +6,44 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  // Top level is what `wrangler dev` uses. With --local it reads a SQLite
+  // file under .wrangler/state, so no remote data is touched.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "waitlist-staging-db",
+      "database_id": "1ac11e9b-6df7-4845-9f7a-5ad29cee9498",
+      "migrations_dir": "./src/server/db/migration"
+    }
+  ],
   "env": {
     "staging": {
       "vars": {
         "ENVIRONMENT": "staging",
         "CF_ACCESS_DOMAIN": "https://flat-haze-88bf.cloudflareaccess.com",
         "POLICY_AUD": "14870f07c88aa8358a17512aaffd46c7f052feee1c164c79a9f5122fbb1daa4c"
-      }
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "waitlist-staging-db",
+          "database_id": "1ac11e9b-6df7-4845-9f7a-5ad29cee9498",
+          "migrations_dir": "./src/server/db/migration"
+        }
+      ]
     },
     "production": {
       "vars": {
         "ENVIRONMENT": "production"
-      }
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "waitlist-production-db",
+          "database_id": "REPLACE_ME",
+          "migrations_dir": "./src/server/db/migration"
+        }
+      ]
     }
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "waitlist-db",
-      "database_id": "ad1bd013-e368-4aec-8d51-9cc15d37f5a0"
-    }
-  ]
+  }
 }
