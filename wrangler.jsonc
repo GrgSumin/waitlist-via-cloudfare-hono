@@ -2,4 +2,29 @@
   "name": "waitlist",
   "main": "src/server/index.ts",
   "compatibility_date": "2026-09-10",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "env": {
+    "staging": {
+      "vars": {
+        "ENVIRONMENT": "staging",
+        "CF_ACCESS_DOMAIN": "https://flat-haze-88bf.cloudflareaccess.com",
+        "POLICY_AUD": "14870f07c88aa8358a17512aaffd46c7f052feee1c164c79a9f5122fbb1daa4c"
+      }
+    },
+    "production": {
+      "vars": {
+        "ENVIRONMENT": "production"
+      }
+    }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "waitlist-db",
+      "database_id": "ad1bd013-e368-4aec-8d51-9cc15d37f5a0"
+    }
+  ]
 }
