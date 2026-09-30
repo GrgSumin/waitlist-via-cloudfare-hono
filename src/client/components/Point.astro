@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div class="border-base-300 grid gap-2 border-t py-7 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-10">
+  <h3 class="font-display text-lg font-semibold tracking-[-0.01em]">{title}</h3>
+  <p class="max-w-[58ch] leading-relaxed opacity-70">{description}</p>
+</div>

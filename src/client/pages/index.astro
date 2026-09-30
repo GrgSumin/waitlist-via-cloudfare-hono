@@ -1,36 +1,38 @@
 ---
-import Card from "../components/Card.astro";
 import Hero from "../components/Hero.astro";
-import { ServerStatus } from "../components/serverStatus";
+import Point from "../components/Point.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <main class="flex min-h-screen flex-col items-center justify-center gap-12 px-6 py-16">
-    <Hero />
+  <div class="mx-auto w-full max-w-6xl px-6 sm:px-8">
+    <header class="py-8">
+      <span class="font-display text-lg font-bold tracking-[-0.02em]">
+        Dry Run
+      </span>
+    </header>
 
-    <section class="w-full max-w-5xl">
-      <h2 class="text-neutral-content pb-8 text-center">
-        What ten minutes a day gets you
-      </h2>
+    <main class="pt-8 pb-24 sm:pt-14">
+      <Hero />
 
-      <div class="grid gap-6 md:grid-cols-3 md:items-stretch">
-        <Card
-          title="Interview ready"
-          description="Drill the questions that actually come up, until the answer arrives before the nerves do."
+      <section class="mt-28">
+        <Point
+          title="Real questions"
+          description="Pulled from interviews developers actually sat, not a list of trivia someone invented to sound hard."
         />
-        <Card
-          title="Read AI code faster"
-          description="Your assistant writes plenty. Learn to spot in seconds which parts to keep and which to throw out."
+        <Point
+          title="Answered out loud"
+          description="You speak the answer and hear it back. Reading a solution and explaining one are different skills, and only the second gets tested."
         />
-        <Card
-          title="Muscle memory"
-          description="Closures, promises, the event loop. Small reps until the syntax stops slowing you down."
+        <Point
+          title="Twelve minutes a day"
+          description="Short sessions, spaced so questions return just before you'd forget them. The answer is there when someone asks."
         />
-      </div>
-    </section>
-    <div class="">
-      <ServerStatus client:load />
-    </div>
-  </main>
+      </section>
+    </main>
+
+    <footer class="border-base-300 border-t py-8 text-sm opacity-55">
+      Opening 2027. One email when it does.
+    </footer>
+  </div>
 </Layout>

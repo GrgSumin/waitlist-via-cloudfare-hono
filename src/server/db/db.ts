@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/d1";
 import * as schema from "./schema";
-import { D1Database } from "@cloudflare/workers-types";
+
+// `D1Database` is a global from worker-configuration.d.ts (`wrangler types`).
 export const getDb = (binding: D1Database) => {
   return drizzle(binding, { schema });
 };

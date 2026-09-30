@@ -3,7 +3,7 @@ import { jwtVerify, createRemoteJWKSet, errors } from "jose";
 
 export const accessAuth = createMiddleware(async (c, next) => {
   if (c.env.ENVIRONMENT === "development") {
-    await next();
+    return next();
   }
   if (!c.env.POLICY_AUD) {
     return c.json("Missing required audience", 403);
@@ -17,12 +17,10 @@ export const accessAuth = createMiddleware(async (c, next) => {
     return c.json("Missing required CF Access JWT", 403);
   }
   try {
-    // Create JWKS from your team domain
     const JWKS = createRemoteJWKSet(
       new URL(`${c.env.CF_ACCESS_DOMAIN}/cdn-cgi/access/certs`),
     );
 
-    // Verify the JWT
     await jwtVerify(token, JWKS, {
       issuer: c.env.CF_ACCESS_DOMAIN,
       audience: c.env.POLICY_AUD,
@@ -30,7 +28,6 @@ export const accessAuth = createMiddleware(async (c, next) => {
 
     await next();
   } catch (err) {
-    // Token verification failed
     const error = err as Error;
     return c.json(`Invalid token: ${error.message}`, 403);
   }

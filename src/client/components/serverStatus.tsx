@@ -4,7 +4,7 @@ export const ServerStatus = () => {
   const [msg, setMsg] = useState("");
   useEffect(() => {
     fetch("/api/health")
-      .then((res) => res.json())
+      .then((res) => res.json() as Promise<string>)
       .then((data) => setMsg(data));
   }, []);
 

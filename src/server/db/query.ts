@@ -1,16 +1,23 @@
-import { D1Database } from "@cloudflare/workers-types";
 import * as schema from "./schema";
 import { getDb } from "./db";
 import type { NewSubscriber } from "./schema";
 
+/**
+ * Adds a subscriber to the waitlist.
+ *
+ * Returns the new row, or `undefined` when that email was already on the
+ * list — a repeat signup is a no-op rather than an error.
+ */
 export const insertSubscriber = async (
-  D1Database: D1Database,
-  NewSubscriber: NewSubscriber,
+  binding: D1Database,
+  subscriber: NewSubscriber,
 ) => {
-  const db = getDb(D1Database);
+  const db = getDb(binding);
   const [result] = await db
     .insert(schema.subscribers)
-    .values(NewSubscriber)
+    .values(subscriber)
+    .onConflictDoNothing({ target: schema.subscribers.email })
     .returning();
+
   return result;
 };

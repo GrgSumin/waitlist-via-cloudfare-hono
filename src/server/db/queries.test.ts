@@ -25,12 +25,16 @@ it("insert a new subsciber into the database", async () => {
   expect(subscribers.createdAt).toBeDefined();
 });
 
-it("throws an error when inserting a duplicate email", async () => {
+it("ignores a duplicate email instead of throwing", async () => {
   const newSub: NewSubscriber = { email: "test@test.com" };
-  await insertSubscriber({} as D1Database, newSub);
-  expect(insertSubscriber({} as D1Database, newSub)).rejects.toThrow();
+  const first = await insertSubscriber({} as D1Database, newSub);
+  const second = await insertSubscriber({} as D1Database, newSub);
+
+  expect(first).toBeDefined();
+  expect(second).toBeUndefined();
 });
+
 it("throws an error when inserting a invalid email", async () => {
   const newSub: NewSubscriber = { email: "testtest.com" };
-  expect(insertSubscriber({} as D1Database, newSub)).rejects.toThrow();
+  await expect(insertSubscriber({} as D1Database, newSub)).rejects.toThrow();
 });

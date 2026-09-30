@@ -1,4 +1,76 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: halloween --default;
+@plugin "daisyui";
+
+/* Deep blue-slate ground with amber reserved for the clock and the CTA. */
+@plugin "daisyui/theme" {
+  name: "dryrun";
+  default: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(21% 0.028 258);
+  --color-base-200: oklch(25% 0.03 258);
+  --color-base-300: oklch(32% 0.034 258);
+  --color-base-content: oklch(94% 0.01 250);
+
+  --color-primary: oklch(80% 0.145 78);
+  --color-primary-content: oklch(24% 0.05 70);
+
+  --color-secondary: oklch(72% 0.1 205);
+  --color-secondary-content: oklch(22% 0.04 205);
+
+  --color-accent: oklch(80% 0.145 78);
+  --color-accent-content: oklch(24% 0.05 70);
+
+  --color-neutral: oklch(28% 0.03 258);
+  --color-neutral-content: oklch(94% 0.01 250);
+
+  --color-info: oklch(72% 0.1 205);
+  --color-info-content: oklch(22% 0.04 205);
+  --color-success: oklch(76% 0.13 162);
+  --color-success-content: oklch(24% 0.05 162);
+  --color-warning: oklch(80% 0.145 78);
+  --color-warning-content: oklch(24% 0.05 70);
+  --color-error: oklch(69% 0.17 18);
+  --color-error-content: oklch(22% 0.06 18);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.875rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.28rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* The one piece of motion on the page: the question's clock, running down
+   once as you arrive. */
+@keyframes clock-run {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0.42);
+  }
+}
+
+.clock-fill {
+  transform-origin: left;
+  animation: clock-run 2.4s cubic-bezier(0.33, 0, 0.2, 1) 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clock-fill {
+    animation: none;
+    transform: scaleX(0.42);
+  }
 }
