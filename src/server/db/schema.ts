@@ -8,10 +8,10 @@ export const subscribers = sqliteTable(
     email: text("email").notNull().unique(),
     createdAt: integer("created_at", { mode: "timestamp" })
       .notNull()
-      .default(new Date()),
+      .default(sql`(unixepoch())`),
     updatedAt: integer("updated_at", { mode: "timestamp" })
       .notNull()
-      .default(new Date()),
+      .default(sql`(unixepoch())`),
     trafficSource: text("traffic_source"),
     device: text("device"),
     emailVerified: integer("email_Verified", { mode: "timestamp" }),
